@@ -39,7 +39,7 @@ mkdir src/debian
 tar -xJvf setuptools_78.1.1-0.1.debian.tar.xz -C src/
 ls -l src/debian
 
-cd
+cd /opt/package_build/workdir
 
 #version_orig=78.1.1-0.1
 #version="$version_orig-0"
