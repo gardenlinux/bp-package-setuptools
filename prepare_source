@@ -1,0 +1,38 @@
+version_suffix=gl0
+ignore_orig=true
+
+workdir="$(mktemp -d)"
+apt-get install wget distro-info -y
+
+
+
+cd $workdir
+wget https://deb.debian.org/debian/pool/main/s/setuptools/setuptools_78.1.1.orig.tar.gz 
+wget https://deb.debian.org/debian/pool/main/s/setuptools/setuptools_78.1.1-0.1.debian.tar.xz
+
+
+tar -xJvf setuptools_78.1.1-0.1.debian.tar.xz
+tar -xzvf setuptools_78.1.1.orig.tar.gz
+
+mv setuptools-78.1.1/* ./
+echo "3.0 (native)" > ./debian/source/format
+
+tee ./debian/changelog << EOF
+setuptools (78.1.1-0.1gl0) stable; urgency=medium
+
+  * Port latest version of setuptools to gardenlinux
+
+ -- $maintainer <jan.preissler@sap.com>  Tue, 01 Jul 2025 09:05:56 +0200
+EOF
+
+
+rmdir setuptools-78.1.1/
+rm setuptools_78.1.1-0.1.debian.tar.xz
+rm setuptools_78.1.1.orig.tar.gz
+
+
+
+tar -Jcvf ~/setuptools_78.1.1.orig.tar.xz .
+mv ~/setuptools_78.1.1.orig.tar.xz .
+import_src .
+
