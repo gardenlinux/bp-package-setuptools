@@ -1,4 +1,6 @@
 version_suffix=gl0
+version_orig=78.1.1-0.1
+version="$version_orig-0"
 
 # We prepare the package with the existing one
 apt_src setuptools
