@@ -1,6 +1,6 @@
 version_orig=78.1.1-0.1
 version="$version_orig-2"
-version_suffix="gl0§~bp1592"
+G
 
 
 # We prepare the package with the existing one
@@ -32,3 +32,5 @@ tar -xJvf setuptools_78.1.1-0.1.debian.tar.xz -C src/
 
 # Return to base folder.
 cd /opt/package_build/workdir
+
+version_suffix=gl1~bp1592
