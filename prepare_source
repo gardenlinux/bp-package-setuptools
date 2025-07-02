@@ -6,87 +6,29 @@ version_suffix="gl1~bp1592"
 # We prepare the package with the existing one
 apt_src setuptools
 
-apt-get install wget -y
 
-echo $dir
-ls $dir
-ls $dir/src
-# We overwrite with updated pacakge.
-ls $dir
-
+# We overwrite now the old soruces from setuptools with the updated ones.
 rm $dir/orig.tar
 rm -rvf $dir/src
 
+# We need to download the latest package. And decompressed to be like the apt-get source file look
+# like.
+apt-get install wget -y
 wget https://deb.debian.org/debian/pool/main/s/setuptools/setuptools_78.1.1.orig.tar.gz -O $dir/orig.tar.gz
 gunzip $dir/orig.tar.gz
-ls $dir
 
-
+# We have to return to the orignal path, otherwise the pipeline will break. Here we will prepare
+# the upstream source to be build.
 cd $dir
 mkdir src
 tar -xf orig.tar -C src
-
-ls $dir
-ls $dir/src
 mv $dir/src/setuptools-78.1.1/* $dir/src/
 rmdir $dir/src/setuptools-78.1.1/
-ls $dir/src
 
-
-echo "[*]: Downloading debian control files"
+# Downloading debian control files and put them into the src file.
 wget https://deb.debian.org/debian/pool/main/s/setuptools/setuptools_78.1.1-0.1.debian.tar.xz
-echo "[*]: unpack debian control files"
 mkdir src/debian
 tar -xJvf setuptools_78.1.1-0.1.debian.tar.xz -C src/
-ls -l src/debian
 
+# Return to base folder.
 cd /opt/package_build/workdir
-
-#version_orig=78.1.1-0.1
-#version="$version_orig-0"
-#
-#workdir="$(mktemp -d)"
-#apt-get install wget distro-info -y
-#
-#
-#
-#cd $workdir
-
-
-#
-#
-#tar -xJvf setuptools_78.1.1-0.1.debian.tar.xz
-#tar -xzvf setuptools_78.1.1.orig.tar.gz
-#
-#mv setuptools-78.1.1/* ./
-#echo "3.0 (native)" > ./debian/source/format
-#
-#tee ./debian/changelog << EOF
-#setuptools (78.1.1-0.1-0) stable; urgency=medium
-#
-#  * Port latest version of setuptools to gardenlinux
-#
-# -- $maintainer <jan.preissler@sap.com>  Tue, 01 Jul 2025 09:05:56 +0200
-#EOF
-#
-#
-#rmdir setuptools-78.1.1/
-
-
-#rm setuptools_78.1.1-0.1.debian.tar.xz
-#rm setuptools_78.1.1.orig.tar.gz
-#
-#
-#
-#tar -Jcvf ~/setuptools_78.1.1.orig.tar.xz .
-#mv ~/setuptools_78.1.1.orig.tar.xz .
-#import_src .
-#ls -l
-#ls -l /opt/package_build/workdir
-#pwd
-#
-#echo $dir
-#ls $dir
-#ls $dir/src
-#
-
