@@ -1,7 +1,5 @@
 version_orig=78.1.1-0.1
 version="$version_orig-2"
-G
-
 
 # We prepare the package with the existing one
 apt_src setuptools
